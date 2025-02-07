@@ -16,7 +16,9 @@ Route::controller(RegisterController::class)->group(function() {
 
 Route::middleware('auth:sanctum')->group(function() {
     Route::apiResource('blogs', BlogController::class);
-    Route::get('user', function(Request $request) {
-        return $request->user();
-    })->name('user');
+    Route::get('user', [RegisterController::class, 'getUserData'])->name('user');
+    Route::post('logout', [RegisterController::class, 'logout'])->name('logout');
+    // Route::get('user', function(Request $request) {
+    //     return $request->user();
+    // })->name('user');
 });
